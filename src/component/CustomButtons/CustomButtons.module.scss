@@ -1,0 +1,37 @@
+/*Button color variable*/
+$custombutton-default:#000;
+$custombutton-hover: #ffffff;
+$googleblue: #4285f4;
+$googleblue-hover: #357ae8;
+
+.customButton {
+   min-width: 165px;
+   width: auto;
+   height: 50px;
+   letter-spacing: 0.5px;
+   line-height: 50px;
+   padding: 0 35px 0 35px;
+   font-size: 15px;
+   background-color: $custombutton-default;
+   color: white;
+   text-transform: uppercase;
+   font-family: 'Open Sans Condensed';
+   font-weight: bolder;
+   border: none;
+   cursor: pointer;
+
+   &:hover {
+     background-color: $custombutton-hover;
+     color: black;
+     border: 1px solid black;
+   }
+ }
+.googleblue{
+  @extend .customButton;
+  background-color: $googleblue;
+  border: none;
+  &:hover{
+    background-color: $googleblue-hover;
+    border: none;
+  }
+}
