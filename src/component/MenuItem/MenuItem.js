@@ -4,7 +4,6 @@ const MenuItem = ({itemtitle,imgsrc}) => {
     const imgstyle = {
         backgroundImage: `url(${imgsrc})`,
     };
-    console.log(imgsrc);
     return (
             <div className={Styles.menu_item}>
                 <div className={Styles.background_image} style={imgstyle}></div>

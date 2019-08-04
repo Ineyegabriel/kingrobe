@@ -19,7 +19,7 @@ class App extends React.Component{
         * 1.) checking if the user already exist, then let then mark them as authenticated
         * 2.) checking if the user doesn't exist, then create the new user in our firestore database and authenticate
         * That is why we have the createUserProfileDocument() function we created in our firebase.utils*/
-        this.unsubscribeFromAuth =auth.onAuthStateChanged(async userAuth=>{
+        this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth=>{
             if(userAuth){
                 const userRef = await createUserProfileDocument(userAuth);
                 userRef.onSnapshot(snapshot => {
