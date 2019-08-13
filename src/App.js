@@ -5,6 +5,8 @@ import Shoppage from "./pages/Shoppage/Shoppage";
 import SignInandUp from './pages/SignInandSignUp/SignInandSignUp';
 import Header from "./component/Header/Header";
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
+import {connect} from 'react-redux';
+import {setCurrentUser} from './reducer/user/userActions';
 class App extends React.Component{
     constructor(props){
         super(props);
@@ -20,11 +22,11 @@ class App extends React.Component{
         * 2.) checking if the user doesn't exist, then create the new user in our firestore database and authenticate
         * That is why we have the createUserProfileDocument() function we created in our firebase.utils*/
         this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth=>{
-            console.log(userAuth);
+            const {settingCurrentUser} = this.props;
             if(userAuth){
                 const userRef = await createUserProfileDocument(userAuth);
                 userRef.onSnapshot(snapshot => {
-                    this.setState({
+                    settingCurrentUser({
                         currentUser:{
                             id: snapshot.id,
                             ...snapshot.data()
@@ -35,7 +37,7 @@ class App extends React.Component{
             else{
                 /*if userAuth which is gotten from the auth library is null because user is not authenticated,
                 * we still want to set the current user to be null*/
-                this.setState({currentUser: userAuth});
+                settingCurrentUser(userAuth);
             }
 
         });
@@ -46,7 +48,7 @@ class App extends React.Component{
     render(){
         return (
             <div className="App">
-                <Header currentuser={this.state.currentUser}/>
+                <Header/>
                 <Switch>
                     <Route exact path='/' component={Homepage}/>
                     <Route exact path='/shop' component={Shoppage}/>
@@ -56,5 +58,11 @@ class App extends React.Component{
         );
     }
 }
+const mapDispatchToProps = dispatch =>{
+    return{
+        settingCurrentUser: (user) => dispatch(setCurrentUser(user))
+    }
+};
 
-export default App;
+export default connect(null,mapDispatchToProps)(App);
+
