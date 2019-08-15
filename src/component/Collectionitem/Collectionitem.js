@@ -9,7 +9,7 @@ const Collectionitem = ({imageUrl,price,name}) => {
             <div className={Styles.image} style={itemImage}></div>
             <div className={Styles.collectionFooter}>
                 <span className={Styles.name}>{name}</span>
-                <span className={Styles.price}>{price}</span>
+                <span className={Styles.price}>&euro;{price}</span>
             </div>
         </div>
 
