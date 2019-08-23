@@ -27,10 +27,11 @@ const Header = ({currentUser, cartdropdownHidden}) => {
         </div>
     );
 };
+
 const mapStateToProps = ({user:{currentUser}, cart:{cartdropdownHidden}}) =>{
    return{
        currentUser,
-       cartdropdownHidden
+       cartdropdownHidden,
    }
 };
 export default connect(mapStateToProps)(Header);

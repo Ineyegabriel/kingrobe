@@ -19,6 +19,9 @@ $googleblue-hover: #357ae8;
    font-weight: bolder;
    border: none;
    cursor: pointer;
+   display: flex;
+   justify-content: center;
+   outline: none;
 
    &:hover {
      background-color: $custombutton-hover;
@@ -33,5 +36,15 @@ $googleblue-hover: #357ae8;
   &:hover{
     background-color: $googleblue-hover;
     border: none;
+  }
+  &.inverted{
+    background-color: $custombutton-hover;
+    color: black;
+    border: 1px solid black;
+    &:hover{
+      background-color: $custombutton-default;
+      color: #ffffff ;
+      border: none;
+    }
   }
 }

@@ -7,8 +7,8 @@ const PreviewCollection = ({title,items}) => {
             <h1 className={Styles.title}>{title}</h1>
             <div className={Styles.preview}>
                 {
-                    items.filter((item, index) => index < 4).map(({id, ...otherProps}) => {
-                        return <Collectionitem key={id} {...otherProps}/>
+                    items.filter((item, index) => index < 4).map(shopItem => {
+                        return <Collectionitem key={shopItem.id} item={shopItem}/>
                     })
                 }
             </div>
