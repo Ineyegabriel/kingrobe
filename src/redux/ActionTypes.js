@@ -3,5 +3,7 @@ export const UserActionTypes = {
 };
 export const CartActionTypes = {
     TOGGLE_CART_DISPLAY : 'TOGGLE_CART_DISPLAY',
-    ADD_ITEM : 'ADD_ITEM'
+    ADD_ITEM : 'ADD_ITEM',
+    CLEAR_ITEM: 'CLEAR_ITEM',
+    REDUCE_ITEM_QUANTITY: 'REDUCE_ITEM_QUANTITY'
 };

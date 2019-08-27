@@ -3,9 +3,9 @@ import Styles from './CartIcon.module.scss';
 import {ReactComponent as Logo} from '../../asserts/shopping-bag.svg';
 import {connect} from 'react-redux';
 import {cartDropDownHidden} from '../../redux/cart/cartActions';
+import {createStructuredSelector} from 'reselect';
 import {selectcartItemsCount} from '../../redux/cart/Cart.Selector';
 const CartIcon = ({ActionToggling,ItemCount}) => {
-    console.log(ItemCount);
     return (
         <div className={Styles.CartIcon} onClick={ActionToggling}>
             <Logo className={Styles.ShoppingIcon}/>
@@ -13,8 +13,8 @@ const CartIcon = ({ActionToggling,ItemCount}) => {
         </div>
     );
 };
-const mapStateToProps = state => ({
-    ItemCount: selectcartItemsCount(state)
+const mapStateToProps = createStructuredSelector ({
+    ItemCount: selectcartItemsCount
 });
 const mapDispatchToProps = dispatch =>({
     ActionToggling: () => dispatch(cartDropDownHidden())
