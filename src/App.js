@@ -12,13 +12,6 @@ import {createStructuredSelector} from 'reselect';
 import {selectCurrentUser} from './redux/user/User.Selector';
 
 class App extends React.Component{
-    constructor(props){
-        super(props);
-        this.state ={
-            currentUser: null
-        }
-    }
-
     unsubscribeFromAuth = null;
     componentDidMount(){
         /*Here we are fetching the details of the authenticated user from auth firebase library and doing two things;
@@ -55,9 +48,9 @@ class App extends React.Component{
                 <Header/>
                 <Switch>
                     <Route exact path='/' component={Homepage}/>
-                    <Route exact path='/shop' component={Shoppage}/>
-                    <Route exact path='/checkout' component={Checkout}/>
-                    <Route exact path='/signin' render={() =>this.props.currentuser ? (<Redirect to='/'/>) : (<SignInandUp/>) }/>
+                    <Route  path='/shop' component={Shoppage}/>
+                    <Route  path='/checkout' component={Checkout}/>
+                    <Route  path='/signin' render={() =>this.props.currentuser ? (<Redirect to='/'/>) : (<SignInandUp/>) }/>
                 </Switch>
             </div>
         );
