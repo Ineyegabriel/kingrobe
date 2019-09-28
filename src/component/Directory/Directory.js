@@ -10,8 +10,8 @@ const Directory =({section}) => {
             <div className="directory-menu">
                 {
                     section.map(({title,id,imageUrl,linkUrl}) => {
-                        return <Link to={linkUrl} className={Styles.wrapper}>
-                                    <MenuItem itemtitle={title} key={id} imgsrc={imageUrl}/>
+                        return <Link to={linkUrl} className={Styles.wrapper} key={id}>
+                                    <MenuItem itemtitle={title}  imgsrc={imageUrl}/>
                                 </Link>
                     })
 
