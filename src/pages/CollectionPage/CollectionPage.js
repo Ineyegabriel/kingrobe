@@ -4,7 +4,6 @@ import {connect} from 'react-redux';
 import Styles from './CollectionPage.module.scss';
 import CollectionItem from '../../component/Collectionitem/Collectionitem';
 const CollectionPage = ({collection}) => {
-    console.log(collection);
     const {items,title} = collection;
     return (
         <div className={Styles.collectionpage}>

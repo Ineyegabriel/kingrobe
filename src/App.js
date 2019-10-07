@@ -31,11 +31,11 @@ class App extends React.Component{
                     });
                 })
             }
-            else{
                 /*if userAuth which is gotten from the auth library is null because user is not authenticated,
                 * we still want to set the current user to be null*/
                 settingCurrentUser(userAuth);
-            }
+
+            /*    addDocumentandCollection('collections', collectionsArray.map( ({items,title}) => ({ items, title}) ));*/
 
         });
     }
@@ -57,7 +57,7 @@ class App extends React.Component{
     }
 }
 const mapStateToProps = createStructuredSelector( {
-    currentuser:  selectCurrentUser
+    currentuser:  selectCurrentUser,
 });
 const mapDispatchToProps = dispatch =>{
     return{
