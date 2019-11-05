@@ -5,12 +5,10 @@ import Shoppage from "./pages/Shoppage/Shoppage";
 import SignInandUp from './pages/SignInandSignUp/SignInandSignUp';
 import Checkout from "./pages/Checkout/Checkout";
 import Header from "./component/Header/Header";
-import {auth, createUserProfileDocument} from './firebase/firebase.utils';
 import {connect} from 'react-redux';
-import {setCurrentUser} from './redux/user/userActions';
 import {createStructuredSelector} from 'reselect';
 import {selectCurrentUser} from './redux/user/User.Selector';
-
+import {checkUserSession} from './redux/user/userActions';
 class App extends React.Component{
     unsubscribeFromAuth = null;
     componentDidMount(){
@@ -18,7 +16,7 @@ class App extends React.Component{
         * 1.) checking if the user already exist, then let then mark them as authenticated
         * 2.) checking if the user doesn't exist, then create the new user in our firestore database and authenticate
         * That is why we have the createUserProfileDocument() function we created in our firebase.utils*/
-        this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth=>{
+       /* this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth=>{
             const {settingCurrentUser} = this.props;
             if(userAuth){
                 const userRef = await createUserProfileDocument(userAuth);
@@ -31,18 +29,21 @@ class App extends React.Component{
                     });
                 })
             }
-                /*if userAuth which is gotten from the auth library is null because user is not authenticated,
-                * we still want to set the current user to be null*/
+                /!*if userAuth which is gotten from the auth library is null because user is not authenticated,
+                * we still want to set the current user to be null*!/
                 settingCurrentUser(userAuth);
 
-            /*    addDocumentandCollection('collections', collectionsArray.map( ({items,title}) => ({ items, title}) ));*/
+            /!*    addDocumentandCollection('collections', collectionsArray.map( ({items,title}) => ({ items, title}) ));*!/
 
-        });
+        });*/
+       const {checkingUserSession} = this.props;
+       checkingUserSession();
     }
     componentWillUnmount(){
         this.unsubscribeFromAuth();
     }
     render(){
+
         return (
             <div className="App">
                 <Header/>
@@ -59,11 +60,8 @@ class App extends React.Component{
 const mapStateToProps = createStructuredSelector( {
     currentuser:  selectCurrentUser,
 });
-const mapDispatchToProps = dispatch =>{
-    return{
-        settingCurrentUser: (user) => dispatch(setCurrentUser(user))
-    }
-};
-
+const mapDispatchToProps = dispatch =>({
+   checkingUserSession: () => dispatch(checkUserSession())
+});
 export default connect(mapStateToProps,mapDispatchToProps)(App);
 

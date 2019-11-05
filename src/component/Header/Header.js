@@ -2,15 +2,15 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import Styles from './Header.module.scss';
 import {ReactComponent as Logo} from '../../asserts/crown.svg';
-import {auth} from '../../firebase/firebase.utils';
 import {connect} from 'react-redux';
 import {createStructuredSelector} from 'reselect';
 import {selectcartHidden} from '../../redux/cart/Cart.Selector';
 import {selectCurrentUser} from '../../redux/user/User.Selector';
 import CartIcon from '../CartIcon/CartIcon';
 import CartDropDown from "../CartDropDown/CartDropDown";
+import {SignOutStart} from '../../redux/user/userActions';
 
-const Header = ({currentUser, cartdropdownHidden}) => {
+const Header = ({currentUser, cartdropdownHidden, Signingout}) => {
     return (
         <div className={Styles.header}>
             <Link to="/" className={Styles.logoContainer}>
@@ -21,7 +21,7 @@ const Header = ({currentUser, cartdropdownHidden}) => {
                 <Link to='/shop' className={Styles.option}>CONTACT</Link>
                 {
                     currentUser?
-                        <div className={Styles.option} onClick={()=> auth.signOut()}>SIGN OUT</div>
+                        <div className={Styles.option} onClick={Signingout}>SIGN OUT</div>
                         :<Link to='/signin' className={Styles.option}>SIGN IN</Link>
                 }
                 <CartIcon/>
@@ -35,4 +35,8 @@ const mapStateToProps = createStructuredSelector({
        currentUser: selectCurrentUser,
        cartdropdownHidden: selectcartHidden
 });
-export default connect(mapStateToProps)(Header);
+const mapDispatchToProps = dispatch =>({
+    Signingout: () => dispatch(SignOutStart())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
