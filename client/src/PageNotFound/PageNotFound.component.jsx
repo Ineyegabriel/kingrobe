@@ -8,7 +8,7 @@ const init = () => {
 const PageNotFound = () => {
     useEffect(() => {
         init();
-    },[init]);
+    },[]);
 
     return (
         <React.Fragment>

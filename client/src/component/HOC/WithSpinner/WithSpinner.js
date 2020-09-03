@@ -1,9 +1,9 @@
 import React from 'react';
 import SpinnerComponent from '../../Spinner/Spinner';
 
-const WithSpinner = (WrappedComponent) => {
+const WithSpinner = (wrappedComponent) => {
     const wrappingcomponent = ({isloading, ...otherProps}) =>{
-        return isloading ?<SpinnerComponent/>  : <WrappedComponent {...otherProps}/>
+        return isloading ?<SpinnerComponent/>  : <wrappedComponent {...otherProps}/>
     };
     return wrappingcomponent;
 };

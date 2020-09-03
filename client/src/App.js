@@ -19,7 +19,6 @@ const App = ({checkingUserSession, currentuser}) =>{
     useEffect(() => {
         checkingUserSession();
     },[checkingUserSession]);
-
     return (
         <div className="App">
 

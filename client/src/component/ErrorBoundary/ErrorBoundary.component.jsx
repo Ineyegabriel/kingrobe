@@ -1,5 +1,4 @@
 import React from 'react';
-import Spinner from '../Spinner/Spinner';
 import PageNotFound from '../../PageNotFound/PageNotFound.component';
 
 class ErrorBoundary extends React.Component{
